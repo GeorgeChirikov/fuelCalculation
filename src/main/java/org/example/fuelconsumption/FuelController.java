@@ -33,6 +33,7 @@ public class FuelController {
 
     private ResourceBundle bundle;
     private Locale locale;
+    private double fuelConsumption = 0.0;
 
 
     public void initialize() {
@@ -46,6 +47,7 @@ public class FuelController {
         distanceLabel.setText(bundle.getString("distance_label"));
         fuelUsedLabel.setText(bundle.getString("fuel_used_label"));
         calculateButton.setText(bundle.getString("calculate_button"));
+        resultLabel.setText(String.format(bundle.getString("fuel_consumption"), fuelConsumption));
     }
 
     @FXML
@@ -83,8 +85,8 @@ public class FuelController {
             resultLabel.setText("Please enter valid numbers");
             return;
         }
-        double fuelConsumption = fuelUsed / distance * 100;
-        resultLabel.setText("Fuel consumption: " + fuelConsumption + " litres per 100km");
+        fuelConsumption = fuelUsed / distance * 100;
+        resultLabel.setText(String.format(bundle.getString("fuel_consumption"), fuelConsumption));
     }
 
 }
